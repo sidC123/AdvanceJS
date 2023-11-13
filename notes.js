@@ -29,8 +29,11 @@ if (true) {
 // 'LET' is block scope. Its value can be modified within the scope, but not outside it.
 // 'CONST' is block scope. Must be decalred when initialized. Its value cant be changed once declared.
 
+let sofi; // Let and Const are hoisted in seperate execution memory.
+var sid; // It is hoised in global execution memory.
+
 function One() {
-    const user = "Siddhesh";
+    // const user = "Siddhesh";
 
     function Two() {
         const Institute = "Trycatch";
@@ -45,14 +48,13 @@ One();
 
 // -------------- HOISTING & Callstack -------------- 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
 
-// something();
-// console.log(x);
 
 var x = 10; //Explain temporal dead zone with let
-
+// console.log(x);
 function something() {
     // console.log("Hello something");
 }
+something();
 
 
 // Global Execution context ❓
@@ -64,7 +66,7 @@ let val1 = 10;
 let val2 = 5;
 function sum(num1, num2) {
     let total = num1 + num2;
-    return total;
+    // console.log(total);
 }
 let sumOne = sum(val1, val2);
 
@@ -89,7 +91,7 @@ let sumOne = sum(val1, val2);
 // - Also the main execution contet will also be deleted.
 
 // Event loop
-// Vist: https://excalidraw.com/#json=5D5LDAyrgPswnW1W6zuhK,nH-NTrz3Ugq8NMySUdKhVg  🌟🌟🌟🌟🌟
+// Visit: https://excalidraw.com/#json=6E_4RjwSMF1iuJMLgox-q,GZr30uSuMhU6r_lohkI7KA  🌟🌟🌟🌟🌟
 
 
 // ❌❌❌------------------------------Topic-1-End-----------------------------------❌❌❌
@@ -102,19 +104,20 @@ function SumOne(a, b) {
     return a + b;
 }
 
-let myArr = [5, 4, 2];
+let myArr = [5, 4, 2, 4, 3];
 
-// console.log(SumOne(2,5));
-// console.log(SumOne(2,5,3));
+// console.log(SumOne(2, 5));
+// console.log(SumOne(2, 5, 3));
 // console.log(SumOne(myArr));
 
 // console.log(SumOne(...myArr)); //⭕⭕⭕ This is a spread operator
-// It spread the individual values from the array.
+// console.log(SumOne(5,4,2,4,3));
+// It spreads the individual values from the array.
 
 // What if we want to sum all the elements of given array ❓❓❓ 
 
 function SumTwo(...args) {
-    // console.log(args);
+    console.log(args);
     let sum = 0;
     for (let index = 0; index < args.length; index++) {
         sum += args[index];
@@ -161,17 +164,27 @@ let user = {
     profession: "Teacher",
     greet: function () {
         console.log(`${this.username}, you're welcome on our website.`);
-    }
+    },
 }
 
 user.education = "Engineer";
+
 user["date of birth"] = "28/08/2000";
 
 // console.log(user);
 // console.log(user["date of birth"]);
 
 // delete user.age;
+// console.log(user);
+
 // user.greet();
+
+// HOW TO USE STRING LITERALS ❓❓❓
+// let std1 = "saloni";
+// let std2 = "sofiya"
+// console.log(`${std1} and ${std2} are learning JS`);
+
+
 
 
 let user2 = {
@@ -194,7 +207,6 @@ function insideThis() {
 }
 // insideThis();
 
-
 // USING THIS KEYWORD INSIDE REGULAR and ARROW FUNCTION 🌟🌟🌟
 let car = {
     model: "Buggati Veyron",
@@ -203,12 +215,12 @@ let car = {
         console.log(this.model);
     },
     myfunArrow: () => {
-        console.log(this.model);
+        console.log(this);
     },
     myfunctions: {
         model: "newmodel",
         mynewfun: function () {
-            console.log(this.model);
+            console.log(this);
         },
     },
 }
@@ -226,7 +238,7 @@ let car = {
 // let fun1 = (num1, num2) => num1 + num2;
 // console.log(fun1(5, 4));
 
-// let fun1 = (num1, num2) => (num1 + num2);
+let fun1 = (num1, num2) => (num1 + num2);
 // console.log(fun1(5, 4));
 
 // ❌❌❌------------------------------Topic-3-End-----------------------------------❌❌❌
@@ -240,6 +252,7 @@ let lecture = {
     price: "5000",
     time: "8am - 10am"
 }
+
 // const { topicInstructor } = lecture;
 // console.log(topicInstructor);
 
@@ -261,11 +274,12 @@ let carData = {
         },
         cc: "1000",
         price: {
-            value: 5000,
+            // value: 5000,
         }
     },
     capacity: "4",
 }
+
 // console.log(carData?.engine?.price?.value ?? 3000); //Optional chaining 🌟🌟🌟🌟
 
 
@@ -276,23 +290,23 @@ const student = function (name = "unnamed", attendance = 0) {
 // console.log(student("Shivani", 17));
 
 
-
-
 // ❌❌❌------------------------------Topic-4-End-----------------------------------❌❌❌
 
 
 // 💥💥💥💥 Topic 5- foreach, Filter, Map, reduce, Find, findIndex, Callback functions 💥💥💥💥
 
-// forEach is a method to iterate over arrays, that expects a callback function. ⭕⭕⭕
+
+// forEach: action | no return
+// filter: action | returns array | conditional array
+// map: action | return array | selective key in array
+
+// forEach is a method to iterate over arrays, that expects a callback function. It does not produce a new array or return any values.⭕⭕⭕
 
 // const subjects = ["javascript", "c++", "nodeJs", "HTML", "CSS"];
 
 // subjects.forEach(function (sub) {
-//     console.log(sub);
-// })
-
-// subjects.forEach((sub) => {
-//     console.log(sub);
+//     // console.log(sub);
+//     // return sub;
 // })
 
 // function print(item) {
@@ -308,7 +322,7 @@ const student = function (name = "unnamed", attendance = 0) {
 //     {
 //         productName: "stretchable collared",
 //         productType: "Tshirt",
-//         color: "Blue",
+//         color: "blue",
 //         size: "M",
 //     },
 //     {
@@ -324,8 +338,15 @@ const student = function (name = "unnamed", attendance = 0) {
 //         size: "XL",
 //     }
 // ]
-// use forEach on above object
+// use forEach on above object and print an array of product names whose color is blue
 
+
+// const blueProducts = products.forEach((p) => {
+//     if (p.color === "blue") {
+//         return p.productName; //will it work
+//     }
+// })
+// console.log(blueProducts);
 
 // Now forEach does any given operation on the items but does not return anything. How?
 // const subjects = ["javascript", "c++", "nodeJs", "HTML", "CSS"];
@@ -348,10 +369,9 @@ const student = function (name = "unnamed", attendance = 0) {
 // })
 // console.log(allStudents);
 
-// const marks = [12, 35, 88, 56, 99, 13, 28, 61, 55, 75, 30];
+const marks = [12, 35, 88, 56, 99, 13, 28, 61, 55, 75, 30];
 // using filter() print an array of marks greater than 35.
 // use forEach and try doing the same.
-
 
 const books = [
     {
@@ -504,7 +524,7 @@ Tasks://
     books.forEach((item) => {
         totalPrice += item.price;
     })
-    // console.log(totalPrice)
+    // console.log(totalPrice);
 }
 
 // Using forEach, display the titles of books that belong to the "Science Fiction" genre.
@@ -535,10 +555,11 @@ books.forEach((book) => {
 
 // Create a new array containing only books that have a price lower than $100. Display the titles and their prices.
 {
-    // const cheapBooks = books.filter((book) => {
-    //     return book.price < 100;
-    // })
+    const cheapBooks = books.filter((book) => {
+        return book.price < 100;
+    })
     // console.log(cheapBooks);
+    // console.log(books.length); // Original array has not been changed
 }
 
 // Filter the list to find books with more than 400 pages and display their titles and the number of pages.
@@ -566,10 +587,8 @@ books.forEach((book) => {
 
 
 // forEach() iterates over array and perform action on elements but does not return an array
-// filter() returns and array but gives the original elements from the array based on some condition
-/* The above code is a comment in JavaScript. It is explaining that the `map()` function in JavaScript
-performs operations on elements and returns them in an array. */
-// Now map() does perform the operations on elements but also returns them in an array
+// filter() returns an array giving only the original elements from the array based on some condition
+// Now map() does perform the operations on elements but also returns them in an array based on that condition
 
 let number = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 let numberPlusTen = number.map((num) => {
@@ -631,7 +650,7 @@ let grandTotal = cartItems.reduce((accumulator, item) => {
 //Find and FindIndex ⭕⭕⭕
 
 // Find gives the element that matches first with the condition from the array
-let marks = [12, 35, 88, 56, 99, 13, 28, 61, 55, 75, 30];
+// let marks = [12, 35, 88, 56, 99, 13, 28, 61, 55, 75, 30];
 
 const findVal = marks.find((ele) => ele > 35)
 // console.log(findVal);
@@ -678,109 +697,109 @@ const findIndexOfVal = marks.findIndex((ele) => ele > 35)
 // 3. rejected
 
 //Each time you call new, a different instance is created.
-const promiseOne = new Promise((resolve, reject) => {
-    // Yahan par hote hai async tasks like Api calls, tidious operations, etc.
-    setTimeout(() => {
-        console.log("The aync setTimeout is completed. P1");
-        resolve();
-    }, 1000)
-})
+// const promiseOne = new Promise((resolve, reject) => {
+//     // Yahan par hote hai async tasks like Api calls, tidious operations, etc.
+//     setTimeout(() => {
+//         console.log("The aync setTimeout is completed. P1");
+//         resolve();
+//     }, 1000)
+// })
 
-// Till here the promise has been created. But to consume it we use .then , .catch() , finally() methods.
+// // Till here the promise has been created. But to consume it we use .then , .catch() , finally() methods.
 
-promiseOne.then(() => { // .then() associates it with the resolution of promise
-    console.log("Promise one is now resolved and consumed.");
-});
+// promiseOne.then(() => { // .then() associates it with the resolution of promise
+//     console.log("Promise one is now resolved and consumed.");
+// });
 
-// Chaining of promise 🌟🌟🌟
-new Promise((resolve, reject) => {
-    setTimeout(() => {
-        console.log("This is async task of chaining promises. P2");
-        resolve()
-    }, 1000)
-}).then(() => {
-    console.log("Promise two Chaining promise is consumed");
-})
+// // Chaining of promise 🌟🌟🌟
+// new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         console.log("This is async task of chaining promises. P2");
+//         resolve()
+//     }, 1000)
+// }).then(() => {
+//     console.log("Promise two Chaining promise is consumed");
+// })
 
-// Passing something to resolve as an arguement in the promise 🌟🌟🌟
-const promiseThree = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        console.log("The aync setTimeout is completed. P3");
-        resolve({ username: "Siddhesh", points: "999" })
-    }, 1000)
-})
-promiseThree.then((user) => {
-    console.log(user);
-})
+// // Passing something to resolve as an arguement in the promise 🌟🌟🌟
+// const promiseThree = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         console.log("The aync setTimeout is completed. P3");
+//         resolve({ username: "Siddhesh", points: "999" })
+//     }, 1000)
+// })
+// promiseThree.then((user) => {
+//     console.log(user);
+// })
 
-// Handling the erros with reject() 🌟🌟🌟
-const promiseFour = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        let error = true;
-        if (!error) {
-            resolve({ username: "Abdullah", points: "9999" })
-        } else {
-            reject('Error: something went wrong. Please reload the page.')
-        }
-    }, 1000)
-})
+// // Handling the erros with reject() 🌟🌟🌟
+// const promiseFour = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         let error = true;
+//         if (!error) {
+//             resolve({ username: "Abdullah", points: "9999" })
+//         } else {
+//             reject('Error: something went wrong. Please reload the page.')
+//         }
+//     }, 1000)
+// })
 
-promiseFour.then((user) => {
-    console.log(user, 'P4 resolve');
-}).catch((error) => {
-    console.log(error);
-}).finally(() => {
-    console.log("Either resolved or rejected this is will always run");
-})
+// promiseFour.then((user) => {
+//     console.log(user, 'P4 resolve');
+// }).catch((error) => {
+//     console.log(error);
+// }).finally(() => {
+//     console.log("Either resolved or rejected this is will always run");
+// })
 
 
-// Using async await and try catch FINALLY!!!!!!!!!!!!!!!! 🌟🌟🌟🌟🌟
-const promiseFive = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        let error = true;
-        if (!error) {
-            resolve({ car: "Lamborghini", model: "Gallardo" })
-        } else {
-            reject('Error: Salary is insufficient')
-        }
-    }, 1000)
-});
+// // Using async await and try catch FINALLY!!!!!!!!!!!!!!!! 🌟🌟🌟🌟🌟
+// const promiseFive = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         let error = true;
+//         if (!error) {
+//             resolve({ car: "Lamborghini", model: "Gallardo" })
+//         } else {
+//             reject('Error: Salary is insufficient')
+//         }
+//     }, 1000)
+// });
 
-// Here async await only handles the resolution and not rejection 🌟🌟🌟
+// // Here async await only handles the resolution and not rejection 🌟🌟🌟
+// // async function consumePromiseFive() {
+// //     const response = await promiseFive;
+// //     console.log(response);
+// // }
+
 // async function consumePromiseFive() {
-//     const response = await promiseFive;
-//     console.log(response);
-// }
-
-async function consumePromiseFive() {
-    try {
-        const response = await promiseFive;
-        console.log(response);
-    } catch (error) { // Now the error is handled gracefully
-        console.log(error);
-    }
-}
-consumePromiseFive()
-
-
-// Fetch() - using actual API as an async action 🌟🌟🌟🌟🌟
-// async function getUsersData() {
 //     try {
-//         const response = await fetch('https://jsonplaceholder.typicode.com/users'); // Try without writing async
-//         const data = await response.json();
-//         console.log(data);
-//     } catch (error) {
-//         console.log(`Error: ${error}`);
+//         const response = await promiseFive;
+//         console.log(response);
+//     } catch (error) { // Now the error is handled gracefully
+//         console.log(error);
 //     }
 // }
-// getUsersData();
+// consumePromiseFive()
 
-fetch('https://jsonplaceholder.typicode.com/users')
-    .then((response) => {
-        return response.json()
-    }).then((data) => {
-        console.log(data);
-    }).catch((error) => console.log(error))
+
+// // Fetch() - using actual API as an async action 🌟🌟🌟🌟🌟
+// // async function getUsersData() {
+// //     try {
+// //         const response = await fetch('https://jsonplaceholder.typicode.com/users'); // Try without writing async
+// //         const data = await response.json();
+// //         console.log(data);
+// //     } catch (error) {
+// //         console.log(`Error: ${error}`);
+// //     }
+// // }
+// // getUsersData();
+
+// fetch('https://jsonplaceholder.typicode.com/users')
+//     .then((response) => {
+//         return response.json()
+//     }).then((data) => {
+//         console.log(data);
+//     }).catch((error) => console.log(error))
 
 
 // ❌❌❌------------------------------Topic-6-End-----------------------------------❌❌❌
