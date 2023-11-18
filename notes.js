@@ -282,9 +282,8 @@ let carData = {
 
 // console.log(carData?.engine?.price?.value ?? 3000); //Optional chaining 🌟🌟🌟🌟
 
-
 const student = function (name = "unnamed", attendance = 0) {
-    return `Greetings ${name}, your project attendance is: ${attendance}`
+    return `Greetings ${name}, your project attendance is: ${attendance}`;
 }
 // console.log(student());
 // console.log(student("Shivani", 17));
@@ -296,13 +295,13 @@ const student = function (name = "unnamed", attendance = 0) {
 // 💥💥💥💥 Topic 5- foreach, Filter, Map, reduce, Find, findIndex, Callback functions 💥💥💥💥
 
 
-// forEach: action | no return
-// filter: action | returns array | conditional array
+// forEach: Action | no return
+// filter: Condition based action | returns array | conditional array
 // map: action | return array | selective key in array
 
 // forEach is a method to iterate over arrays, that expects a callback function. It does not produce a new array or return any values.⭕⭕⭕
 
-// const subjects = ["javascript", "c++", "nodeJs", "HTML", "CSS"];
+const subjects = ["javascript", "c++", "nodeJs", "HTML", "CSS"];
 
 // subjects.forEach(function (sub) {
 //     // console.log(sub);
@@ -318,26 +317,26 @@ const student = function (name = "unnamed", attendance = 0) {
 //     console.log(sub, index, array);
 // })
 
-// let products = [
-//     {
-//         productName: "stretchable collared",
-//         productType: "Tshirt",
-//         color: "blue",
-//         size: "M",
-//     },
-//     {
-//         productName: "Checkqured premium",
-//         productType: "Tshirt",
-//         color: "red",
-//         size: "S",
-//     },
-//     {
-//         productName: "plain denim",
-//         productType: "Jeans",
-//         color: "blue",
-//         size: "XL",
-//     }
-// ]
+let products = [
+    {
+        productName: "stretchable collared",
+        productType: "Tshirt",
+        color: "blue",
+        size: "M",
+    },
+    {
+        productName: "Checkqured premium",
+        productType: "Tshirt",
+        color: "red",
+        size: "S",
+    },
+    {
+        productName: "plain denim",
+        productType: "Jeans",
+        color: "blue",
+        size: "XL",
+    }
+]
 // use forEach on above object and print an array of product names whose color is blue
 
 
@@ -517,6 +516,7 @@ const books = [
 ]
 Tasks://
 // **Iterate through the list of books and print the titles and their corresponding launch years.
+
 
 //Create a function that calculates and prints the total cost of purchasing all the books in the list.
 {
