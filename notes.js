@@ -3,6 +3,7 @@
 const empId = 12345;
 let empEmail = "demo@empEmail.com";
 var empPass = "123";
+
 // empCity = "Mumbai";
 
 // empId = 223; // Cannot re-assign the const
@@ -48,13 +49,14 @@ One();
 
 // -------------- HOISTING & Callstack -------------- 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
 
+// var x = 10; //Explain temporal dead zone with let
 
-var x = 10; //Explain temporal dead zone with let
 // console.log(x);
-function something() {
-    // console.log("Hello something");
-}
-something();
+
+// function something() {
+//     console.log("Hello something");
+// }
+// something();
 
 
 // Global Execution context ❓
@@ -64,11 +66,12 @@ something();
 
 let val1 = 10;
 let val2 = 5;
+
 function sum(num1, num2) {
     let total = num1 + num2;
     // console.log(total);
 }
-let sumOne = sum(val1, val2);
+// let sumOne = sum(val1, val2);
 
 // Process:
 // Phase1: Global execution phase
@@ -76,7 +79,7 @@ let sumOne = sum(val1, val2);
 // phase2: Memory creation phase
 // - val1 will be allocated as undefined
 // - val2 will be allocated as undefined
-// - sum function will be allocated its defination
+// - sum function will be allocated its definition
 // - sumOne will also be allocated as undefined   
 
 // phase3: Execution phase
@@ -111,7 +114,8 @@ let myArr = [5, 4, 2, 4, 3];
 // console.log(SumOne(myArr));
 
 // console.log(SumOne(...myArr)); //⭕⭕⭕ This is a spread operator
-// console.log(SumOne(5,4,2,4,3));
+// console.log(SumOne(5, 4, 2, 4, 3));
+
 // It spreads the individual values from the array.
 
 // What if we want to sum all the elements of given array ❓❓❓ 
@@ -125,7 +129,7 @@ function SumTwo(...args) {
     return sum;
 }
 
-let myArrTwo = [1, 5, 3, 6];
+// let myArrTwo = [1, 5, 3, 6];
 
 // console.log(SumTwo(...myArrTwo)); //⭕⭕⭕ This is a rest operator
 
@@ -149,7 +153,7 @@ function SumThree(a, b, ...args) {
 
 // 💥💥💥💥Topic 3- Object and Object Literals, this, arrow functions 💥💥💥💥
 
-let userName = "demo";
+let userName = "Hema";
 let userAge = 12;
 
 // let user = { userName, userAge }
@@ -163,8 +167,9 @@ let user = {
     age: "27",
     profession: "Teacher",
     greet: function () {
-        console.log(`${this.username}, you're welcome on our website.`);
+        // console.log(this.username);
     },
+    "year of admission": 1987,
 }
 
 user.education = "Engineer";
@@ -200,18 +205,18 @@ let user2 = {
 
 
 // USING THIS KEYWORD INSIDE A FUNCTION 🌟🌟🌟
-function insideThis() {
+function thisInsideFunction() {
     let website = "google";
     console.log(this);
-    console.log(this.website);
+    console.log(website);
 }
-// insideThis();
+// thisInsideFunction();
 
 // USING THIS KEYWORD INSIDE REGULAR and ARROW FUNCTION 🌟🌟🌟
 let car = {
     model: "Buggati Veyron",
     engine: "v12",
-    myfun: function () {
+    regFun: function () {
         console.log(this.model);
     },
     myfunArrow: () => {
@@ -224,7 +229,7 @@ let car = {
         },
     },
 }
-// car.myfun();
+// car.regFun();
 // car.myfunArrow();
 // car.myfunctions.mynewfun();
 
@@ -236,6 +241,9 @@ let car = {
 // }
 
 // let fun1 = (num1, num2) => num1 + num2;
+
+let prod = (num1, num2) => num1 * num2;
+
 // console.log(fun1(5, 4));
 
 let fun1 = (num1, num2) => (num1 + num2);
@@ -803,8 +811,6 @@ const findIndexOfVal = marks.findIndex((ele) => ele > 35)
 
 
 // ❌❌❌------------------------------Topic-6-End-----------------------------------❌❌❌
-
-
 
 // 💥💥💥💥 Topic 7- OOPS 💥💥💥💥
 // Object oriented programming
