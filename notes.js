@@ -258,14 +258,15 @@ let lecture = {
     topic: "Object destructing",
     topicInstructor: "Siddhesh",
     price: "5000",
-    time: "8am - 10am"
+    time: "8am - 10am",
+    student: { StdName: "XYZabc" }
 }
 
-// const { topicInstructor } = lecture;
+const { topicInstructor } = lecture;
 // console.log(topicInstructor);
 
-// const { topicInstructor: teacher } = lecture;
-// console.log(teacher);
+const { topicInstructor: teacher } = lecture;
+// console.log(topicInstructor);
 
 // HOW THIS HELPS IN REACT COMPONENT? 🌟🌟🌟🌟
 // Understanding API response in JSON: randomuser.me + formatter 🌟🌟🌟🌟🌟
@@ -290,18 +291,11 @@ let carData = {
 
 // console.log(carData?.engine?.price?.value ?? 3000); //Optional chaining 🌟🌟🌟🌟
 
-const student = function (name = "unnamed", attendance = 0) {
-    return `Greetings ${name}, your project attendance is: ${attendance}`;
-}
-// console.log(student());
-// console.log(student("Shivani", 17));
-
 
 // ❌❌❌------------------------------Topic-4-End-----------------------------------❌❌❌
 
 
-// 💥💥💥💥 Topic 5- foreach, Filter, Map, reduce, Find, findIndex, Callback functions 💥💥💥💥
-
+// 💥💥💥💥 Topic 5- forEach, filter, map, reduce, Find, findIndex, Callback functions 💥💥💥💥
 
 // forEach: Action | no return
 // filter: Condition based action | returns array | conditional array
@@ -311,19 +305,20 @@ const student = function (name = "unnamed", attendance = 0) {
 
 const subjects = ["javascript", "c++", "nodeJs", "HTML", "CSS"];
 
-// subjects.forEach(function (sub) {
-//     // console.log(sub);
-//     // return sub;
-// })
+const JsSub = subjects.forEach(function (sub) {
+    // console.log(sub);
+    return sub; // will it return any
+})
+// console.log(JsSub);
 
-// function print(item) {
-//     console.log(item);
-// }
+function print(item) {
+    console.log(item);
+}
 // subjects.forEach(print);
 
-// subjects.forEach((sub, index, array) => {
-//     console.log(sub, index, array);
-// })
+subjects.forEach((sub, index, array) => {
+    // console.log(sub, index, array);
+})
 
 let products = [
     {
@@ -345,8 +340,7 @@ let products = [
         size: "XL",
     }
 ]
-// use forEach on above object and print an array of product names whose color is blue
-
+// use forEach on above Array and print an array of product names whose color is blue
 
 // const blueProducts = products.forEach((p) => {
 //     if (p.color === "blue") {
@@ -375,6 +369,7 @@ let products = [
 //     return std;
 // })
 // console.log(allStudents);
+
 
 const marks = [12, 35, 88, 56, 99, 13, 28, 61, 55, 75, 30];
 // using filter() print an array of marks greater than 35.
@@ -522,7 +517,7 @@ const books = [
         "numPages": 746
     }
 ]
-Tasks://
+//Tasks:
 // **Iterate through the list of books and print the titles and their corresponding launch years.
 
 
@@ -534,6 +529,7 @@ Tasks://
     })
     // console.log(totalPrice);
 }
+
 
 // Using forEach, display the titles of books that belong to the "Science Fiction" genre.
 books.forEach((book) => {
@@ -592,17 +588,68 @@ books.forEach((book) => {
 
 // Create a new array with books that have titles containing the word "the." Display the titles and genres of these books.
 
+// map() tasks:
+// Task 1: Create an array of book titles with their respective authors included. Each entry should be in the format: "Title" by Author.
+
+// Task 2: Generate an array of book objects containing only the title, launch year, and a new property called isNewRelease set to true for books published after 2010 and false otherwise.
+{
+    // const updatedBooks = books.map(book => {
+    //     return {
+    //         title: book.title,
+    //         launchYear: book.launchYear,
+    //         isNewRelease: book.launchYear > 2010 // Check if the book is a new release
+    //     };
+    // });
+    // console.log(updatedBooks);
+}
+
+// Task 3: Create a new array with the book titles capitalized and sorted alphabetically.
+{
+    // const capitalizedAndSortedTitles = books.map(book => book.title.toUpperCase()).sort();
+
+    // console.log(capitalizedAndSortedTitles);
+}
+
+// Task 4: Convert the prices of all books to a different currency (e.g., convert prices from dollars to euros or any other currency) based on an exchange rate, returning a new array with the converted prices.
+{
+    // const exchangeRate = 0.85;
+
+    // const pricesInEuros = books.map(book => {
+    //     return {
+    //         title: book.title,
+    //         priceInEuros: book.price * exchangeRate // Convert price to euros
+    //     };
+    // });
+
+    // console.log(pricesInEuros);
+}
 
 
-// forEach() iterates over array and perform action on elements but does not return an array
-// filter() returns an array giving only the original elements from the array based on some condition
-// Now map() does perform the operations on elements but also returns them in an array based on that condition
+// Task 5: Use map() to transform the books array into an array of JSX elements representing each book's title, genre, and launch year, suitable for rendering in a React component.
+{
+    //     const bookList = document.getElementById('book-list');
+
+    //     const bookElements = books.map(book => `
+    //     <div>
+    //         <h3>${book.title}</h3>
+    //         <p>Genre: ${book.genre}</p>
+    //         <p>Launch Year: ${book.launchYear}</p>
+    //     </div>
+    // `);
+
+    //     bookList.innerHTML = bookElements.join('');
+}
 
 let number = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 let numberPlusTen = number.map((num) => {
     return num + 10;
 })
 // console.log(numberPlusTen);
+
+// forEach() iterates over array and perform action on elements but does not return an array
+// filter() returns an array giving only the original elements from the array based on some condition
+// Now map() does perform the operations on elements but also returns them in an array based on that condition
+
 
 
 // reduce() method takes initial value provides it to accumulator and then continues the operation but, finally returns a single value.
@@ -654,6 +701,34 @@ let grandTotal = cartItems.reduce((accumulator, item) => {
 }, 0)
 // console.log(grandTotal);
 
+// reduce() tasks:
+// Task 1: Calculate the total cost of all items in the cart.
+{
+    // const totalCost = cartItems.reduce((accumulator, currentItem) => {
+    //     return accumulator + (currentItem.priceInRs * currentItem.quantity);
+    // }, 0);
+
+    // console.log("Total Cost:", totalCost);
+}
+
+// Task 2: Determine the total number of items in the cart (total quantity).
+{
+    // const totalItems = cartItems.reduce((accumulator, currentItem) => {
+    //     return accumulator + currentItem.quantity;
+    // }, 0);
+
+    // console.log("Total Items:", totalItems);    
+}
+
+// Task 3: Find the most expensive item in the cart based on its price.
+{
+    // const mostExpensiveItem = cartItems.reduce((maxItem, currentItem) => {
+    //     return (maxItem.priceInRs > currentItem.priceInRs) ? maxItem : currentItem;
+    // });
+
+    // console.log("Most Expensive Item:", mostExpensiveItem);
+}
+
 
 //Find and FindIndex ⭕⭕⭕
 
@@ -679,21 +754,26 @@ const findIndexOfVal = marks.findIndex((ele) => ele > 35)
 // 3	LOADING	Downloading; responseText holds partial data.
 // 4	DONE	The operation is complete.
 
-// const requestUrl = 'https://reqres.in/api/users?page=2'
-// const xhr = new XMLHttpRequest();
-// console.log(xhr.readyState); //0
-// xhr.open('GET', requestUrl)
-// console.log(xhr.readyState); //1
-// xhr.onreadystatechange = function () {
-//     console.log(xhr.readyState); // 2   3   4
-//     if (xhr.readyState === 4) {
-//         console.log(this.responseText); // but everything is in string
-//         const data = JSON.parse(this.responseText) // data converted to json format
-//         console.log(typeof data); // checking
-//         console.log(data.data[0].email); // accessing
-//     }
-// }
-// xhr.send();
+const requestUrl = 'https://reqres.in/api/users?page=2'
+const xhr = new XMLHttpRequest();
+
+console.log(xhr.readyState); //0
+
+xhr.open('GET', requestUrl)
+console.log(xhr.readyState); //1
+
+xhr.onreadystatechange = function () {
+    console.log(xhr.readyState); // 2   3   4
+    if (xhr.readyState === 4) {
+        console.log(this.responseText); // but everything is in string
+        console.log(typeof this.responseText); // checking type
+        const data = JSON.parse(this.responseText) // data converted to json format
+        console.log(data);
+        console.log(typeof data); // checking type
+        console.log(data.data[0].email); // accessing
+    }
+}
+xhr.send();
 
 
 // PROMISE-------------------- 🌟🌟🌟🌟🌟
