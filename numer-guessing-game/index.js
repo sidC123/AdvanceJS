@@ -8,6 +8,7 @@ let lowOrHi = document.querySelector('.lowOrHi');
 
 let guessSubmit = document.querySelector('.guessSubmit');
 let guessField = document.querySelector('.guessField');
+let body = document.querySelector('body');
 
 let guessCount = 1;
 let resetButton;
@@ -28,13 +29,17 @@ function checkGuess(userGuess) {
     } else if (userGuess > 100) {
         alert('PLease enter a  number less than 100');
     } else if (userGuess === randomNumber) {
+        guesses.textContent += userGuess + ' ';
         lastResult.textContent = 'Congratulations! You got it right!';
         lastResult.style.backgroundColor = 'green';
         lowOrHi.textContent = '';
+        body.style.background = "url('./7crore.gif')";
+        body.style.backgroundRepeat = "no-repeat";
+        body.style.backgroundSize = "100% 100vh";
+
         setGameOver();
     } else if (guessCount === 10) {
         guesses.textContent += userGuess + ' ';
-
         lastResult.textContent = '!!!GAME OVER!!!';
         setGameOver();
     } else {
@@ -71,6 +76,7 @@ function setGameOver() {
 function resetGame() {
     guessCount = 1;
 
+    body.style.background = "unset";
     let resetParas = document.querySelectorAll('.resultParas p');
     for (let i = 0; i < resetParas.length; i++) {
         resetParas[i].textContent = '';
@@ -89,4 +95,5 @@ function resetGame() {
     lastResult.style.backgroundColor = 'white';
 
     randomNumber = Math.floor(Math.random() * 100) + 1;
+    console.log(randomNumber);
 }

@@ -4,12 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="notes.js"></script>
     <title>Test</title>
+    <style>
+        #book-list {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            column-gap: 30px;
+        }
+
+        .card {
+            border: 1px solid red;
+            box-shadow: 10px 20px 15px black;
+            width: 25%;
+        }
+    </style>
 </head>
 
 <body>
     <h1>hello world</h1>
+
+    <div id="book-list"></div>
+    <script src="notes.js"></script>
+    <!-- <script src="demo.js"></script> -->
 </body>
 
 </html>
