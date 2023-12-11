@@ -243,7 +243,7 @@
     let fun1 = (num1, num2) => (num1 + num2);
     // console.log(fun1(5, 4));
 }
-// ❌❌❌------------------------------Topic-3-End-----------------------------------❌❌❌
+// ❌❌❌-------------------------------Topic-3-End-----------------------------------❌❌❌
 
 // 💥💥💥💥 Topic 4- Destructuring of array & Object, Intro of API JSON, Optional chaining 💥💥💥💥
 {
@@ -745,22 +745,18 @@
 
     // Blocking and non-blocking code
 
-    const sto1 = () => setTimeout(() => console.log("time one"), 0)
-    const sto2 = () => setTimeout(() => console.log("time two "), 2000)
+    // const sto1 = () => setTimeout(() => console.log("time one"), 0)
+    // const sto2 = () => setTimeout(() => console.log("time two "), 2000)
 
-    sto1();
-    console.log("log One");
-    sto2();
-    console.log("log Two");
-
-    // time one
-    // log one
-    // log two
-    // time two
+    // sto1();
+    // console.log("log One");
+    // sto2();
+    // console.log("log Two");
 
     // Example of changing the content of website with timeout and clearing it on event
 
     // Reefrence:https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+
     // 0	UNSENT:	Client has been created. open() not called yet.
     // 1	OPENED:	open() has been called.
     // 2	HEADERS_RECEIVED:  send() has been called, and headers and status are available.
@@ -768,8 +764,9 @@
     // 4	DONE:  The operation is complete.
 
     const requestUrl = 'https://reqres.in/api/users?page=2'
-    const xhr = new XMLHttpRequest();
+    const requestUrl2 = "https://jsonplaceholder.typicode.com/users"
 
+    // const xhr = new XMLHttpRequest();
     // console.log(xhr.readyState); //0
 
     // xhr.open('GET', requestUrl)
@@ -778,16 +775,16 @@
     // xhr.onreadystatechange = function () {
     //     console.log(xhr.readyState); // 2   3   4
     //     if (xhr.readyState === 4) {
-    //         console.log(this.responseText); // but everything is in string
+    //         let response = this.responseText;
+    //         console.log(response.data); // but everything is in string
     //         console.log(typeof this.responseText); // checking type
-    //         const data = JSON.parse(this.responseText) // data converted to json format
+    //         const data = JSON.parse(this.response) // data converted to json format
     //         console.log(data);
     //         console.log(typeof data); // checking type
     //         console.log(data.data[0].email); // accessing
     //     }
     // }
     // xhr.send();
-
 
     // PROMISE-------------------- 🌟🌟🌟🌟🌟
     // The Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
@@ -806,7 +803,7 @@
     //     }, 1000)
     // })
 
-    // // Till here the promise has been created. But to consume it we use .then , .catch() , finally() methods.
+    // Till here the promise has been created. But to consume it we use .then , .catch() , finally() methods.
 
     // promiseOne.then(() => { // .then() associates it with the resolution of promise
     //     console.log("Promise one is now resolved and consumed.");
@@ -833,7 +830,7 @@
     //     console.log(user);
     // })
 
-    // // Handling the erros with reject() 🌟🌟🌟
+    // Handling the erros with reject() 🌟🌟🌟
     // const promiseFour = new Promise((resolve, reject) => {
     //     setTimeout(() => {
     //         let error = true;
@@ -853,46 +850,47 @@
     //     console.log("Either resolved or rejected this is will always run");
     // })
 
-    // // Using async await and try catch FINALLY!!!!!!!!!!!!!!!! 🌟🌟🌟🌟🌟
-    // const promiseFive = new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         let error = true;
-    //         if (!error) {
-    //             resolve({ car: "Lamborghini", model: "Gallardo" })
-    //         } else {
-    //             reject('Error: Salary is insufficient')
-    //         }
-    //     }, 1000)
-    // });
+    // Using async await and try catch FINALLY!!!!!!!!!!!!!!!! 🌟🌟🌟🌟🌟
+    const promiseFive = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let error = false;
+            if (!error) {
+                resolve({ car: "Lamborghini", model: "Gallardo" })
+            } else {
+                reject('Error: Salary is insufficient')
+            }
+        }, 2000)
+    });
 
-    // // Here async await only handles the resolution and not rejection 🌟🌟🌟
-    // // async function consumePromiseFive() {
-    // //     const response = await promiseFive;
-    // //     console.log(response);
-    // // }
+    // Here async await only handles the resolution and not rejection 🌟🌟🌟
+    async function consumePromiseFive() {
+        const response = await promiseFive;
+        console.log(response);
+    }
+    consumePromiseFive()
 
-    // async function consumePromiseFive() {
-    //     try {
-    //         const response = await promiseFive;
-    //         console.log(response);
-    //     } catch (error) { // Now the error is handled gracefully
-    //         console.log(error);
-    //     }
-    // }
-    // consumePromiseFive()
+    async function consumePromiseFive() {
+        try {
+            const response = await promiseFive;
+            console.log(response);
+        } catch (error) { // Now the error is handled gracefully
+            console.log(error);
+        }
+    }
+    consumePromiseFive()
 
 
-    // // Fetch() - using actual API as an async action 🌟🌟🌟🌟🌟
-    // // async function getUsersData() {
-    // //     try {
-    // //         const response = await fetch('https://jsonplaceholder.typicode.com/users'); // Try without writing async
-    // //         const data = await response.json();
-    // //         console.log(data);
-    // //     } catch (error) {
-    // //         console.log(`Error: ${error}`);
-    // //     }
-    // // }
-    // // getUsersData();
+    // Fetch() - using actual API as an async action 🌟🌟🌟🌟🌟
+    async function getUsersData() {
+        try {
+            const response = await fetch(requestUrl); // Try without writing async
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(`Error: ${error}`);
+        }
+    }
+    getUsersData();
 
     // fetch('https://jsonplaceholder.typicode.com/users')
     //     .then((response) => {
@@ -901,8 +899,16 @@
     //         console.log(data);
     //     }).catch((error) => console.log(error))
 }
+
 // ❌❌❌------------------------------Topic-6-End-----------------------------------❌❌❌
 
 // 💥💥💥💥 Topic 7- OOPS 💥💥💥💥
 // Object oriented programming
 // It is nothing but the way of writing a the program or the structure (programming pradigm)
+
+// * Oops Concept
+// * Xml http request
+// * Api fetch
+// * Promise
+// * All Promise methods
+// * Async , await
