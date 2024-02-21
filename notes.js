@@ -46,9 +46,10 @@
 
     // -------------- HOISTING & Callstack -------------- 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
 
-    // var x = 10; //Explain temporal dead zone with let
-
-    // console.log(x);
+    // let ABCD = 10; //Explain temporal dead zone with let
+    // memory allocation. depends on var-GlocalScope let/const-BlockScope
+    // first value will be assigned undefined
+    // console.log(ABCD);
 
     // function something() {
     //     console.log("Hello something");
@@ -58,6 +59,7 @@
 
     // Global Execution context ❓
     // consoling this keyword in node env and browser ❓
+    // console.log(this)
     // Functional Execution context ❓
     // Memory creation phase and Execution phase ❓
 
@@ -93,6 +95,31 @@
     // Event loop
     // Visit: https://excalidraw.com/#json=6E_4RjwSMF1iuJMLgox-q,GZr30uSuMhU6r_lohkI7KA  🌟🌟🌟🌟🌟
 
+
+    // function multiply(a, b) {
+    //     return a * b;
+    // }
+
+    // function square(n) {
+    //     return multiply(n, n);
+    // }
+
+    // function printSquare(n) {
+    //     var squared = square(n);
+    //     console.log(squared);
+    // }
+
+    // printSquare(4);
+
+    // ------------------------------------
+
+    // console.log('Hi');
+
+    // setTimeout(() => {
+    //     console.log('There');
+    // }, 5000);
+
+    // console.log('Event loop')
 }
 // ❌❌❌------------------------------Topic-1-End-----------------------------------❌❌❌
 
@@ -106,7 +133,7 @@
 
     let myArr = [5, 4, 2, 4, 3];
 
-    // console.log(SumOne(2, 5));
+    // console.log(SumOne(2, 5)) ;
     // console.log(SumOne(2, 5, 3));
     // console.log(SumOne(myArr));
 
@@ -127,8 +154,9 @@
     }
 
     let myArrTwo = [1, 5, 3, 6];
+    let myArrdemo = [10, 20];
 
-    // console.log(SumTwo(...myArrTwo)); //⭕⭕⭕ This is a spread operator
+    // console.log(SumTwo(...myArrTwo, ...myArrdemo)); //⭕⭕⭕ This is a spread operator
 
     // What if we want to get the product of first two and sum of all the elements of given array ❓❓❓ 
     let myArrayThree = [5, 2, 4, 8, 12, 16];
@@ -194,7 +222,6 @@
         }
     }
     // user2.printThis();
-
     // console.log(this); // Consoling on browser? 🌟🌟🌟
 
 
@@ -301,7 +328,7 @@
     const subjects = ["javascript", "c++", "nodeJs", "HTML", "CSS"];
 
     const JsSub = subjects.forEach(function (sub) {
-        // console.log(sub);
+        // console.log(sub.concat("postfix"));
         return sub; // will it return any
     })
     // console.log(JsSub);
@@ -755,7 +782,7 @@
 
     // Example of changing the content of website with timeout and clearing it on event
 
-    // Reefrence:https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+    // Reference:https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
 
     // 0	UNSENT:	Client has been created. open() not called yet.
     // 1	OPENED:	open() has been called.
@@ -802,6 +829,8 @@
     //         resolve();
     //     }, 1000)
     // })
+
+    // console.log(promiseOne);
 
     // Till here the promise has been created. But to consume it we use .then , .catch() , finally() methods.
 
@@ -851,46 +880,46 @@
     // })
 
     // Using async await and try catch FINALLY!!!!!!!!!!!!!!!! 🌟🌟🌟🌟🌟
-    const promiseFive = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            let error = false;
-            if (!error) {
-                resolve({ car: "Lamborghini", model: "Gallardo" })
-            } else {
-                reject('Error: Salary is insufficient')
-            }
-        }, 2000)
-    });
+    // const promiseFive = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         let error = false;
+    //         if (!error) {
+    //             resolve({ car: "Lamborghini", model: "Gallardo" })
+    //         } else {
+    //             reject('Error: Salary is insufficient')
+    //         }
+    //     }, 2000)
+    // });
 
     // Here async await only handles the resolution and not rejection 🌟🌟🌟
-    async function consumePromiseFive() {
-        const response = await promiseFive;
-        console.log(response);
-    }
-    consumePromiseFive()
+    // async function consumePromiseFive() {
+    //     const response = await promiseFive;
+    //     console.log(response);
+    // }
+    // consumePromiseFive()
 
-    async function consumePromiseFive() {
-        try {
-            const response = await promiseFive;
-            console.log(response);
-        } catch (error) { // Now the error is handled gracefully
-            console.log(error);
-        }
-    }
-    consumePromiseFive()
+    // async function consumePromiseFive() {
+    //     try {
+    //         const response = await promiseFive;
+    //         console.log(response);
+    //     } catch (error) { // Now the error is handled gracefully
+    //         console.log(error);
+    //     }
+    // }
+    // consumePromiseFive()
 
 
     // Fetch() - using actual API as an async action 🌟🌟🌟🌟🌟
-    async function getUsersData() {
-        try {
-            const response = await fetch(requestUrl); // Try without writing async
-            const data = await response.json();
-            console.log(data);
-        } catch (error) {
-            console.log(`Error: ${error}`);
-        }
-    }
-    getUsersData();
+    // async function getUsersData() {
+    //     try {
+    //         const response = await fetch(requestUrl); // Try without writing async
+    //         const data = await response.json();
+    //         console.log(data);
+    //     } catch (error) {
+    //         console.log(`Error: ${error}`);
+    //     }
+    // }
+    // getUsersData();
 
     // fetch('https://jsonplaceholder.typicode.com/users')
     //     .then((response) => {
@@ -912,3 +941,34 @@
 // * Promise
 // * All Promise methods
 // * Async , await
+
+import { useState, useRef } from "react";
+
+const Counter = () => {
+    const countRef = useRef(0);
+    const [countState, setCountState] = useState(0);
+
+    return (
+        <>
+            <div>
+                <p>Count Ref: {countRef.current}</p>
+                <button onClick={() => countRef.current += 1}>
+                    increment Ref
+                </button>
+            </div>
+
+            <div>
+                <p>Count Ref: {countState}</p>
+                <button onClick={() => {
+                    setCountState((prev) => prev + 1)
+                    setCountState((prev) => prev + 1)
+                }}>
+                    increment Ref
+                </button>
+            </div>
+        </>
+    );
+}
+
+
+

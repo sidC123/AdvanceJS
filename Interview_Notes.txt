@@ -1,0 +1,380 @@
+# HTML & CSS:
+
+- head tag: adding metadata, title, styles, extrnal fonts, meta descriptions, etc.
+
+- Semantic tags: elements that provide meaning to the content they enclose, beyond just presentation or formatting. Easy to understand for web crawler. W3 standards.
+                 head, aside, section, footer, title, etc.
+
+- Targetting CSS:
+  - class, tags, Id
+  - Pseudo class:  :nth :hover :active :visited :focused
+  - pseduo elements: :after :before
+  - css box model and box sizing, content box
+  - DOM, what is DOM
+  - diff between querySelector and querySelectorAll
+    - querySelector will give the first element in the DOM. querySelectorAll will return a NodeList.
+  - diff between querySelctorAll and getElementsByClassname
+    - getElementsByClassname returns Html elements which is not an array. 
+    - we can use for loop for both querySelectorAll and getElementsByClassname.
+    - But forEach can be used only in querySelectorAll.
+  - Div-span relation, relationship between block and inline elements and their behaviour
+  - Responsive approach
+  - media-queries- max-width min-width
+  - How to center a div
+     1. display flex, justify center, alig items center
+     2. display grid, place content center
+     3. parent: display table, child: display table cell and vertical align middle
+  
+# Javascript:
+  - Babel- Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.
+  - DOM manipulation
+  - Primitive and non primitive data types(reference types)
+  - let const var, global scope, functional scope
+  - Event loop
+  - prefix postfix
+  - async await, try catch, promises, states of promises
+  - closures? lexical scope/environment
+
+
+- What is constructor?
+  - a constructor in JavaScript is a special function that is automatically called when you create a new instance of an object using the new keyword.
+  - Definition: You define a constructor function using the function keyword, typically starting with an uppercase letter to distinguish it from regular functions.
+  - Initialization: Inside the constructor function, you use the this keyword to refer to the current instance of the object being created. You can attach properties and methods to the object by assigning them to this. For example:
+
+function Robot() {
+    this.color = 'blue';
+    this.energyLevel = 100;
+    this.speak = function(message) {
+        console.log("Robot says: " + message);
+    };
+}
+
+  - Creating Instances: To create new instances of the object, you use the new keyword followed by the constructor function's name, like this:
+	
+var myRobot = new Robot();
+
+  - This line of code invokes the Robot constructor function and creates a new object with the properties and methods defined within the constructor.
+
+  - Accessing Properties and Methods: 
+console.log(myRobot.color); // Output: blue
+myRobot.speak("Hello, I am your friendly robot!"); // Output: Robot says: Hello, I am your friendly robot!
+console.log(myRobot.energyLevel); // Output: 100
+
+
+
+
+-------------------------------
+
+	{
+		let a = 1;
+		let b = 2;
+		console.log(a);
+    		console.log(b);
+	}
+	console.log(a);
+    	console.log(b);
+
+--------------------------------
+
+	function anyName(){
+	  var c = 1;
+	  c = 1;//
+  	  console.log("anyname");
+	}
+	console.log(c);
+
+--------------------------------
+
+<script src="" type="module"></script>
+
+  - script type="module": enables strict mode that means no variable can be decalred without let var const, i.e. c=1 cannot console c
+  - console.log(0123) VS code throws error, we cannot cosnole octal literals. any number which starts with 0 is Octal
+
+--------------------------------
+
+	var x=3
+	function foo(){
+        	console.log(x);
+		var x=10;
+	}
+	foo();
+
+--------------------------------
+
+	foo();
+	var foo = 20;
+	function foo() {
+	    console.log("foo called");
+	}
+	foo();
+
+--------------------------------
+
+CLOSURE EXAMPLE
+function makeAdder(x) {
+  return function (y) {
+    return x + y;
+  };
+}
+const add5 = makeAdder(5);	
+console.log(add5(2)); // 7
+
+--------------------------------
+
+for (var i = 1; i <= 3; i++) {
+    setTimeout(() => {
+        console.log(i)
+    }, 1000);
+}
+
+for (var i = 1; i <= 3; i++) {
+    const tf = (i) => {
+        setTimeout(() => {
+            console.log(i)
+        }, 1000);
+    }
+
+    tf(i);
+}
+
+------------------------------------------------------------
+
+setTimeout(() => {
+    console.log(i)
+}, 1000);
+
+Promise.resolve().then(() => console.log("promise resolved"));
+
+console.log("hi");
+
+MICRO - promises, apis - high priority
+MACRO - timer -  low priority
+
+----------------------------
+
+async function foo() {
+    return "hello world!";
+}
+const result = foo();
+console.log(result)
+
+async function foo() {
+    return "hello world!";
+}
+async function op() {
+    const result = await foo();
+    console.log(result)
+}
+op()
+
+-------------------------------
+
+function Abc() {
+    console.log("hii");
+}
+const value = new Abc();
+console.log(value);
+
+---------------------------------
+
+const Abc = {
+    username: "sid",
+    age: 26
+}
+console.log(userName);
+
+1. change key name to user-name
+2. destructure the user-name from Abc
+
+let { ["user-name"]: userName } = Abc;
+
+
+------------------------------------
+
+# REACT:
+  - State in React? special variable in react
+
+-----------------------------------
+
+import { useState, useRef } from "react";
+
+const Counter = () => {
+    const countRef = useRef(0);
+    const [countState, setCountState] = useState(0);
+
+    return (
+        <>
+            <div>
+                <p>Count Ref: {countRef}</p>
+                <button onClick={() => countRef.current += 1}>
+                    increment Ref
+                </button>
+            </div>
+
+            <div>
+                <p>Count Ref: {countState}</p>
+                <button onClick={() => setCountState(countState + 1)}>
+                    increment State
+                </button>
+            </div>
+        </>
+    );
+}
+
+----------------------------------------
+Q,. create an expense tracker app. where user can add the the text for which the expense is and the amount. also show total expense of the user.
+
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [expenses, setExpenses] = useState([]);
+  const [newExpense, setNewExpense] = useState({
+    expenseFor: "",
+    expenseAmt: "",
+  });
+  const [totalExpense, setTotalExpense] = useState(0);
+  const expenseLimit = 500;
+
+  const handleChange = (e) => {
+    setNewExpense({
+      ...newExpense,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    setTotalExpense(
+      expenses.reduce((acc, item) => acc + Number(item.expenseAmt), 0)
+    );
+  }, [expenses]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newExpense.expenseFor === "" || newExpense.expenseAmt === "") {
+      alert("Please fill all the fields");
+      return;
+    } else {
+      setExpenses([...expenses, newExpense]);
+      setNewExpense({
+        expenseFor: "",
+        expenseAmt: "",
+      });
+    }
+  };
+
+  console.log(expenses);
+
+  return (
+    <div>
+      <h1>Expense tracker</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "10px",
+          border: "1px solid black",
+          padding: "5px",
+          backgroundColor:
+            totalExpense > expenseLimit ? "orangered" : "lightblue",
+          margin: "15px 0",
+        }}
+      >
+        <span>Total Expense till Now:</span> <span>Rs. {totalExpense}</span>
+      </div>
+
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "5px",
+        }}
+      >
+        <div>
+          <label htmlFor="expenseFor">Expense for: </label>
+          <input
+            type="text"
+            id="expenseFor"
+            value={newExpense.expenseFor}
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <div>
+          <label htmlFor="expenseAmt">Expense amount: </label>
+          <input
+            type="text"
+            id="expenseAmt"
+            value={newExpense.expenseAmt}
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <button
+          style={{ width: "fit-content", marginLeft: "auto" }}
+          type="submit"
+          onClick={(e) => handleSubmit(e)}
+        >
+          Add Expense
+        </button>
+      </form>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          marginTop: "10px",
+          border: "1px solid black",
+          padding: "10px",
+        }}
+      >
+        {expenses && expenses.length <= 0 ? (
+          <span style={{ textAlign: "center" }}>There are no expenses yet</span>
+        ) : (
+          expenses.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: "10px",
+                border: "1px solid black",
+                padding: "5px",
+                backgroundColor: "lightgrey",
+              }}
+            >
+              <span>{item.expenseFor}</span>
+              <span> {item.expenseAmt} </span>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+---------------------------------------------------------------------
+
+- what is React Component Life cycle?
+  - Component life cycle describes about thevarious stages of component's existence.
+    - Mounting: This phase occurs when an instance of a component is being created and inserted into the DOM.
+	- constructor(): This method is called before a component is mounted. It's used to initialize state and bind event handlers.
+	- render(): This method is responsible for rendering the component's UI.
+	- componentDidMount(): This method is invoked immediately after a component is mounted. It's often used to perform tasks like data 	fetching or setting up subscriptions.
+    - Updating: This phase occurs when a component is being re-rendered as a result of changes to its props or state.
+	- render(): Re-renders the component's UI with updated props or state.
+	- componentDidUpdate(): This method is called immediately after an update occurs. It's often used to perform actions based on changes to 	props or state.
+    - Unmounting: This phase occurs when a component is being removed from the DOM.
+	- componentWillUnmount(): This method is called just before a component is unmounted and destroyed. It's used to perform cleanup tasks 	such as canceling timers or unsubscribing from external data sources.
+
+
+
+
+
+
+
+
+
+
+
+
+
