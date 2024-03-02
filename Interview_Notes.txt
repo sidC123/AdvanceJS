@@ -7,8 +7,8 @@
 
 - Targetting CSS:
   - class, tags, Id
-  - Pseudo class:  :nth :hover :active :visited :focused
-  - pseduo elements: :after :before
+  - Pseudo class:  :first-child :nth :focus :hover :active :visited :focused
+  - pseduo elements: ::after ::before ::first-letter ::first-line ::marker ::selection
   - css box model and box sizing, content box
   - DOM, what is DOM
   - diff between querySelector and querySelectorAll
@@ -24,11 +24,16 @@
      1. display flex, justify center, alig items center
      2. display grid, place content center
      3. parent: display table, child: display table cell and vertical align middle
+- What is CSS preprocessor? benefits of SASS?
   
 # Javascript:
-  - Babel- Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.
+  - Babel- Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older
+  browsers or environments.
   - DOM manipulation
   - Primitive and non primitive data types(reference types)
+    - The predefined data types provided by JavaScript language are known as primitive data types. Primitive data types are also known as in-built data
+    types.
+    - the Non primitive data types are derived from the primitive data types. they are also called as reference type.
   - let const var, global scope, functional scope
   - Event loop
   - prefix postfix
@@ -36,6 +41,25 @@
   - closures? lexical scope/environment
 
 
+"async and await make promises easier to write"
+async makes a function return a Promise
+await makes a function wait for a Promise
+
+10.METHODS OF TARGETING ELEMNT
+ BY TAG NAME,CLASS NAME,ID,QUERYSELECTOR,QUERYSELECTORALL  
+ GETELEMENTBYID GETELEMENTSBYCLASSNAME GETELEMENTSBYTAGNAME, document.queryselector,document.queryselectorall
+n
+queryselector only returns first element in the dom
+queryselector all will return all elements in a nodelist we can use for loop, for each
+
+12.BOX MODEL  
+models is layers of html elments
+content box -when we set box-sizing: content box then the total width and height of an element will not include the padding
+border box -but as we change it to border box the padding will be included in the whole width with content
+padding box - It'll show the padding of that element.
+margin box  - It'll show the margin of that element.
+
+15. Constructor 
 - What is constructor?
   - a constructor in JavaScript is a special function that is automatically called when you create a new instance of an object using the new keyword.
   - Definition: You define a constructor function using the function keyword, typically starting with an uppercase letter to distinguish it from regular functions.
@@ -50,7 +74,7 @@ function Robot() {
 }
 
   - Creating Instances: To create new instances of the object, you use the new keyword followed by the constructor function's name, like this:
-	
+  
 var myRobot = new Robot();
 
   - This line of code invokes the Robot constructor function and creates a new object with the properties and methods defined within the constructor.
@@ -61,9 +85,59 @@ myRobot.speak("Hello, I am your friendly robot!"); // Output: Robot says: Hello,
 console.log(myRobot.energyLevel); // Output: 100
 
 
+- What is constructor?
+  - a constructor in JavaScript is a special function that is automatically called when you create a new instance of an object using the new keyword.
+  - Definition: You define a constructor function using the function keyword, typically starting with an uppercase letter to distinguish it from regular
+  functions.
+  - Initialization: Inside the constructor function, you use the this keyword to refer to the current instance of the object being created. You can attach
+  properties and methods to the object by assigning them to this. For example:
 
+  function Robot() {
+      this.color = 'blue';
+      this.energyLevel = 100;
+      this.speak = function(message) {
+          console.log("Robot says: " + message);
+      };
+  }
+
+  - Creating Instances: To create new instances of the object, you use the new keyword followed by the constructor function's name, like this:
+	
+  var myRobot = new Robot();
+
+  - This line of code invokes the Robot constructor function and creates a new object with the properties and methods defined within the constructor.
+
+  - Accessing Properties and Methods: 
+  console.log(myRobot.color); // Output: blue
+  myRobot.speak("Hello, I am your friendly robot!"); // Output: Robot says: Hello, I am your friendly robot!
+  console.log(myRobot.energyLevel); // Output: 100
+
+  It has to have the exact name "constructor"
+  It is executed automatically when a new object is created
+  It is used to initialize object properties
 
 -------------------------------
+
+- What is class in JS?
+  ECMAScript 2015, also known as ES6, introduced JavaScript Classes.
+  JavaScript Classes are templates for JavaScript Objects.
+
+  class Car {
+    constructor(name, year) {
+      this.name = name;
+      this.year = year;
+    }
+  }
+
+  A JavaScript class is not an object.
+  It is a template for JavaScript objects.
+  When you have a class, you can use the class to create objects:
+
+  const myCar1 = new Car("Ford", 2014);
+  const myCar2 = new Car("Audi", 2019);
+
+  The constructor method is called automatically when a new object is created
+
+-------------------------------------------------
 
 	{
 		let a = 1;
@@ -222,6 +296,7 @@ const Counter = () => {
 }
 
 ----------------------------------------
+
 Q,. create an expense tracker app. where user can add the the text for which the expense is and the amount. also show total expense of the user.
 
 import { useState, useEffect } from "react";
@@ -356,19 +431,146 @@ export default function App() {
 
 - what is React Component Life cycle?
   - Component life cycle describes about thevarious stages of component's existence.
-    - Mounting: This phase occurs when an instance of a component is being created and inserted into the DOM.
-	- constructor(): This method is called before a component is mounted. It's used to initialize state and bind event handlers.
-	- render(): This method is responsible for rendering the component's UI.
-	- componentDidMount(): This method is invoked immediately after a component is mounted. It's often used to perform tasks like data 	fetching or setting up subscriptions.
-    - Updating: This phase occurs when a component is being re-rendered as a result of changes to its props or state.
+    1. Mounting: This phase occurs when an instance of a component is being created and inserted into the DOM.
+	1. constructor(): 
+          - This method is called before a component is mounted. 
+          - It's used to initialize state and bind event handlers.
+	2. render(): 
+          - This method is responsible for rendering the component's UI.
+	3. componentDidMount(): 
+          - This method is invoked immediately after a component is mounted. 
+          - It's often used to perform tasks like data fetching, api calling.
+
+        $$$$$$$ shouldComponentupdate(): checks whether our components should update or not by comparing the state and props
+
+    2. Updating: This phase occurs when a component is being re-rendered as a result of changes to its props or state.
 	- render(): Re-renders the component's UI with updated props or state.
-	- componentDidUpdate(): This method is called immediately after an update occurs. It's often used to perform actions based on changes to 	props or state.
-    - Unmounting: This phase occurs when a component is being removed from the DOM.
-	- componentWillUnmount(): This method is called just before a component is unmounted and destroyed. It's used to perform cleanup tasks 	such as canceling timers or unsubscribing from external data sources.
+	- componentDidUpdate(): 
+          - This method is called immediately after an update occurs. 
+          - It's often used to perform actions based on changes to props or state.
+
+    3. Unmounting: This phase occurs when a component is being removed from the DOM.
+	- componentWillUnmount(){consle.log("unmounted")}
+          - This method is called just before a component is unmounted and destroyed. 
+          - It's used to perform cleanup tasks such as canceling timers or unsubscribing from external data sources.
+
+---------------------------------------------------------------------
+
+- Callback hell?
+  Callback Hell is essentially nested callbacks stacked below one another forming a pyramid structure. Every callback depends/waits for the previous
+  callback, thereby making a pyramid structure that affects the readability and maintainability of the code.
+
+- prop drilling?
+  Prop drilling occurs when intermediate components between the parent and child components do not actually use the data being passed through props, but
+  they have to relay these props down to their children.
+  To address prop drilling, React offers solutions like context API or state management libraries such as Redux. Context API allows you to create a centralized store of data that can be accessed by any component in the component tree without explicitly passing props through every level. State management libraries like Redux provide a global state that can be accessed and modified from any component without the need for prop drilling. These solutions help simplify the passing of data and make the codebase more maintainable and efficient.
+
+-----------------------------------------------------------
+
+How do we increase performance of React app? what is code splitting, Suspense and Error boundary in React?
+
+-----------------------------------------------------------
+
+React Native:
+React Native is a framework for building mobile applications using JavaScript and React. It allows developers to create cross-platform mobile apps with a single codebase, which can run on both iOS and Android devices. React Native provides a set of components and APIs that enable developers to build native UI components and access device features such as the camera, location, and accelerometer.
+
+Redux:
+Redux is a state management library for JavaScript applications, commonly used with React. It provides a predictable state container that helps manage the state of an application in a single, immutable object called the "store." Redux facilitates state changes through actions, which are plain JavaScript objects describing what happened. These actions are handled by pure functions called reducers, which update the state of the application in a predictable manner.
+
+Why context API is better than Redux:
+The Context API is a feature introduced in React for managing global state without the need for third-party libraries like Redux. It allows components to share data without having to pass props through every level of the component tree. While Redux is powerful and widely used for state management in large applications, the Context API can be simpler and more straightforward for smaller applications or components with simpler state needs. Context API reduces boilerplate code and can lead to cleaner, more maintainable code.
+
+Frontend Technologies:
+Frontend technologies refer to the technologies used to build the user interface and user experience of a website or web application. This includes HTML (Hypertext Markup Language), CSS (Cascading Style Sheets), and JavaScript. Frontend technologies also encompass frameworks and libraries such as React, Angular, and Vue.js, as well as tools like Webpack and Babel for building and optimizing web applications.
+
+JavaScript, HTML, CSS, JQuery, Bootstrap:
+JavaScript, HTML, CSS, jQuery, and Bootstrap are fundamental technologies for building web applications.
+
+JavaScript: A programming language used to add interactivity and dynamic behavior to web pages.
+HTML: The standard markup language for creating web pages and web applications.
+CSS: A stylesheet language used for describing the presentation of a document written in HTML.
+jQuery: A fast, small, and feature-rich JavaScript library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.
+Bootstrap: A front-end framework for developing responsive and mobile-first websites and web applications.
+What are the processors in CSS:
+
+CSS preprocessors are scripting languages that extend the functionality of CSS. They allow for variables, nesting, mixins, functions, and other techniques that make CSS more maintainable and efficient. Examples of CSS preprocessors include Sass (Syntactically Awesome Stylesheets), LESS, and Stylus.
+
+What are platforms in API:
+In the context of APIs, platforms refer to the environment or infrastructure where APIs are hosted and accessed. This could include web platforms like AWS (Amazon Web Services), Google Cloud Platform, or Microsoft Azure, as well as API management platforms like Apigee or Swagger.
+
+CRUD Operation: Define Network system & CRUD Operation:
+CRUD stands for Create, Read, Update, and Delete. It represents the four basic functions of persistent storage. In the context of web development, CRUD operations are commonly associated with database management and API endpoints:
+
+Create: Adding new data to a database or server.
+Read: Retrieving existing data from a database or server.
+Update: Modifying existing data in a database or server.
+Delete: Removing data from a database or server.
+A network system refers to the infrastructure and protocols used for communication between computers or devices. In the context of web development, CRUD operations are often performed through HTTP requests to API endpoints, where each operation corresponds to a specific HTTP method:
+
+Create: POST method
+Read: GET method
+Update: PUT or PATCH method
+Delete: DELETE method
+Semantic way of writing HTML:
+
+Writing HTML in a semantic way means using HTML elements that convey meaning about the content they contain. This improves accessibility, search engine optimization, and maintainability of the code. Semantic HTML elements include <header>, <nav>, <main>, <section>, <article>, <aside>, <footer>, <figure>, <figcaption>, <table>, <form>, etc.
+
+How do you use the put method in React JS:
+In React.js, the PUT method is commonly used to update data on a server. To use the PUT method, you typically make an HTTP request using a library like Axios or fetch, passing the URL of the resource to be updated along with the updated data in the request body.
+
+html tag in ReactJS:
+In ReactJS, the html tag is not commonly used directly. Instead, JSX (JavaScript XML) syntax is used to write HTML-like code within JavaScript. JSX allows developers to write HTML structures directly in their React components, making the code more readable and maintainable.
+
+Is HTML5 used in React:
+Yes, HTML5 is used in React. React utilizes HTML5 elements such as <div>, <span>, <input>, <button>, etc., to create user interfaces. Additionally, React components are often structured using semantic HTML5 elements for improved accessibility and SEO.
+
+Audio Video support API:
+The Audio and Video support API in web development refers to the HTML5 <audio> and <video> elements, along with their associated JavaScript APIs for controlling playback, volume, and other aspects of multimedia content embedded in web pages.
+
+Head tag:
+In HTML, the <head> tag is used to contain meta-information about the document, such as the title, links to stylesheets, scripts, and other metadata. It is not visible to users but is important for search engines and browsers to interpret and render the document correctly.
+
+How to update meta tags in React JS:
+In ReactJS, meta tags can be updated dynamically by manipulating the document's <head> element using JavaScript. This can be achieved using libraries like React Helmet, which allows you to define meta tags within React components and have them rendered into the document's head during runtime.
+
+button property in CSS write css properties as following:
+In CSS, button properties refer to the various style properties that can be applied to <button> elements to control their appearance, such as background color, text color, padding, border, etc.
+
+Query Solving:
+/* CSS to make background blue & white, dark blue on hover state, active state, and default state <button type="submit"/> */
+
+button[type="submit"] {
+  background-color: blue; /* default background */
+  color: white; /* default text color */
+  border: none;
+  padding: 10px 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: darkblue; /* dark blue on hover */
+}
+
+button[type="submit"]:active {
+  background-color: white; /* white on click */
+  color: blue;
+}
+
+/* Default state - background blue & white */
+button[type="submit"].default {
+  background-color: blue;
+  color: white;
+}
 
 
-
-
+Sample media query in CSS:
+/* Media query for screens smaller than 768px */
+@media only screen and (max-width: 768px) {
+  /* CSS rules for smaller screens */
+  body {
+    font-size: 14px;
+  }
+}
+This media query changes the font size of the body text to 14 pixels on screens smaller than 768 pixels wide.
 
 
 
